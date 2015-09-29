@@ -22,6 +22,7 @@ BEGIN
 	SET @CurrentOp = 'Get Contacts';
 	SET @TableName = 'ADcontacts';
 	PRINT '------------------------------------------------------------------------';
+	PRINT 'Update ADcontacts table with data from Active Directory.';
 	PRINT @CurrentOp + ' from AD INTO ' + @TableName + ' table.';
 
 	BEGIN TRY
@@ -54,9 +55,11 @@ BEGIN
 		-- DROP temp table.
 		SET @SQL = 'DROP TABLE ' + @tempTableName + ';';
 		EXECUTE (@SQL)
+		PRINT '------------------------------------------------------------------------';
 	END TRY
 	BEGIN CATCH
 		PRINT 'Error - ' + @CurrentOp + ' - Operation aborted.';
+		PRINT '------------------------------------------------------------------------';
 		THROW;
 	END CATCH
 	RETURN;
