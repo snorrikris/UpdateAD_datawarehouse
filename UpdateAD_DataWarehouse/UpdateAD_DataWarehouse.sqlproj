@@ -101,5 +101,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="TestScripts\Test_usp_UpdateADcontacts.sql" />
+    <None Include="TestScripts\Test_usp_UpdateADcomputers.sql" />
+    <None Include="TestScripts\Test_usp_UpdateADwell_known_sids.sql" />
+    <None Include="TestScripts\Test_usp_UpdateADgroups.sql" />
+    <None Include="TestScripts\Test_usp_UpdateADusersPhotos.sql" />
+    <None Include="TestScripts\Test_usp_UpdateADall_tables.sql" />
+    <None Include="UpdateAD_DW.ps1" />
   </ItemGroup>
 </Project>
