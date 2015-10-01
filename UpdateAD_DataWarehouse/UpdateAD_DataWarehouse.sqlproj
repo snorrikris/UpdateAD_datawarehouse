@@ -107,5 +107,6 @@
     <None Include="TestScripts\Test_usp_UpdateADusersPhotos.sql" />
     <None Include="TestScripts\Test_usp_UpdateADall_tables.sql" />
     <None Include="UpdateAD_DW.ps1" />
+    <None Include="Invoke-ExecuteTSQL.ps1" />
   </ItemGroup>
 </Project>

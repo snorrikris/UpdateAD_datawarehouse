@@ -19,8 +19,8 @@ $now = Get-Date -Format G
 try
 {
     $Sqlconnection.FireInfoMessageEventOnUserErrors=$true
-    #Register-ObjectEvent -InputObject $SqlConnection -EventName InfoMessage -Action { Write-Host " XXX $($Event.SourceEventArgs)" } -SupportEvent
-    Register-ObjectEvent -InputObject $SqlConnection -EventName InfoMessage -Action { $global:sqllog += "$($Event.SourceEventArgs)`n" } -SupportEvent
+    Register-ObjectEvent -InputObject $SqlConnection -EventName InfoMessage -Action { Write-Host "$($Event.SourceEventArgs)" } -SupportEvent
+    #Register-ObjectEvent -InputObject $SqlConnection -EventName InfoMessage -Action { $global:sqllog += "$($Event.SourceEventArgs)`n" } -SupportEvent
     #Register-ObjectEvent -InputObject $SqlConnection -EventName InfoMessage -Action { $global:op = $global:op -join " XXX $($Event.SourceEventArgs)" } -SupportEvent
 
     $global:log += "$now`tConnecting to SQL server...`n"
