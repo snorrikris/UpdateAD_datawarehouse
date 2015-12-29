@@ -66,10 +66,11 @@ function Invoke-ExecuteTSQL {
 	#		$SqlConnection.ConnectionString = "Server=$($SQLInstanceName);Database=$($DatabaseName);UID=$($Username);PWD=$($Password)"
 	#	}
 
-	 	$eventID = "SQLConnectionEvent$(Get-date -format 'yyyyMMddhhmmss')";
+	 	$eventID = "SQLConnectionEvent$(Get-date -format 'yyyyMMddThhmmss')";
 		
 		write-verbose "Registering the event $eventID" 
 	 	Register-ObjectEvent -inputObject $SqlConnection -eventName InfoMessage -sourceIdentifier $eventID
+        #$SqlConnection.FireInfoMessageEventOnUserErrors = $true;
 		
 		$SqlCmd = New-Object System.Data.SqlClient.SqlCommand
 		$SqlCmd.Connection = $SqlConnection
@@ -82,11 +83,12 @@ function Invoke-ExecuteTSQL {
 		$SqlCmd.ExecuteNonQuery() | Out-Null
 		$ExitCode = $true
 		$Message = Get-SQLConnectionEvent $eventID
-		$ErroMessage = ""
+		$ErrorMessage = ""
 	} catch {
 		$ExitCode = $false
+		#$Message = Get-SQLConnectionEvent $eventID
 		$Message = ""
-		$ErroMessage = $_.exception
+		$ErrorMessage = $_.exception
 	}
 	Finally {
 		if ($SqlCmd.Connection.State -eq [System.Data.ConnectionState]::Open) {
@@ -98,8 +100,17 @@ function Invoke-ExecuteTSQL {
 
 	Write-Output (New-Object psobject -Property @{	'ExitCode' = $ExitCode
 							'Message' = $Message	
-  							'ErrorMessage' =$ErroMessage})
+  							'ErrorMessage' = $ErrorMessage})
+    #Write-Output "ExitCode: $ExitCode"
+    #Write-Output "Message:`n$Message"
+    #Write-Output "ErrorMessage:`n$ErrorMessage"
+
 }
 
 $Query = "EXECUTE [dbo].[usp_UpdateADcontacts] 'LDAP://DC=veca,DC=is'"
-Invoke-ExecuteTSQL -SQLInstanceName snorridev\sqlexpress -DatabaseName AD_DW -Query $Query -verbose
+#Invoke-ExecuteTSQL -SQLInstanceName snorridev\sqlexpress -DatabaseName AD_DW -Query $Query -verbose
+$result = Invoke-ExecuteTSQL -SQLInstanceName snorridev\sqlexpress -DatabaseName AD_DW -Query $Query -verbose
+Write-Output $result.ExitCode
+Write-Output $result.Message
+Write-Output $result.ErrorMessage
+
