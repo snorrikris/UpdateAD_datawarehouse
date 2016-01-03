@@ -59,6 +59,7 @@
   <ItemGroup>
     <Folder Include="Properties" />
     <Folder Include="TestScripts" />
+    <Folder Include="Extra scripts" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="usp_UpdateADusers.sql" />
@@ -84,16 +85,22 @@
     <Build Include="usp_UpdateADusersPhotos.sql" />
     <Build Include="usp_UpdateADall_tables.sql" />
     <Build Include="ADwell_known_sids_lookup.sql" />
+    <None Include="Extra scripts\UpdateAD_DataWarehouse_Create%28modified).sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Build Include="Extra scripts\Create_SQL_Agent_job.sql" />
   </ItemGroup>
   <ItemGroup>
     <ArtifactReference Include="$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\110\SqlSchemas\master.dacpac">
       <HintPath>$(DacPacRootPath)\Extensions\Microsoft\SQLDB\Extensions\SqlServer\110\SqlSchemas\master.dacpac</HintPath>
       <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
       <DatabaseVariableLiteralValue>master</DatabaseVariableLiteralValue>
+      <Private>False</Private>
     </ArtifactReference>
     <ArtifactReference Include="..\..\GetADobjects\GetADobjects\bin\Debug\GetADobjects.dacpac">
       <HintPath>..\..\GetADobjects\GetADobjects\bin\Debug\GetADobjects.dacpac</HintPath>
       <SuppressMissingDependenciesErrors>False</SuppressMissingDependenciesErrors>
+      <Private>False</Private>
     </ArtifactReference>
   </ItemGroup>
   <ItemGroup>
@@ -106,7 +113,8 @@
     <None Include="TestScripts\Test_usp_UpdateADgroups.sql" />
     <None Include="TestScripts\Test_usp_UpdateADusersPhotos.sql" />
     <None Include="TestScripts\Test_usp_UpdateADall_tables.sql" />
-    <None Include="UpdateAD_DW.ps1" />
-    <None Include="Invoke-ExecuteTSQL.ps1" />
+    <None Include="Extra scripts\UpdateAD_DW.ps1">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 </Project>
