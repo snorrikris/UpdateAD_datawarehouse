@@ -165,6 +165,7 @@ CREATE TABLE [dbo].[ADusersPhotos] (
     [ObjectGUID] UNIQUEIDENTIFIER NOT NULL,
     [Width]      INT              NULL,
     [Height]     INT              NULL,
+	[Format]	 NVARCHAR(4)	  NULL, 
     [Photo]      VARBINARY (MAX)  NULL,
     CONSTRAINT [PK_ADusersPhotosGUIDs] PRIMARY KEY CLUSTERED ([ObjectGUID] ASC) ON [PRIMARY]
 ) ON [PRIMARY];
