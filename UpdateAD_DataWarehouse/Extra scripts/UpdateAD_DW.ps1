@@ -7,19 +7,19 @@
 ############################################################################################################
 # Modify the following parameters:
 
-$ADpath = "LDAP://DC=veca,DC=is"    # <-- your AD domain
+$ADpath = "LDAP://DC=contoso,DC=com"    # <-- your AD domain
 
 $TaskTitle = "Update Active Directory data warehouse on SQL server"
 
 # Email settings
-$MailTo = "snorri@veritas.is"
+$MailTo = "admin@contoso.com"
 $MailFrom = "dummy@dummy.com"
-$MailServer = "kerfispostur.veca.is"
+$MailServer = "mail.contoso.com"
 $SendMailOnSuccess = $true
 $SendMailOnFailure = $true
 
 #SQL connection string
-$connString = "Data Source=snorridev\sqlexpress;Initial Catalog=AD_DW;Integrated Security=TRUE;"
+$connString = "Data Source=yourserver\sqlexpress;Initial Catalog=AD_DW;Integrated Security=TRUE;"
 
 
 ############################################################################################################
